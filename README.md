@@ -1,6 +1,6 @@
 # Documentation
 
-Data such as iPhone model, storage, price and color are collected from website [MP3.sk](https://www.mp3.sk/bazar-mobily-apple-bazar-c-207355_207356.html)
+Data such as iPhone model, storage, price and color are collected from website [MP3.sk](https://www.mp3.sk/bazar-mobily-apple-bazar-c-207355_207356.html). Program doesn't collect data from all iPhones. It is focused on iPhones with label **new, not opened box**. These iPhones are cheaper but in same condition as new ones. Basically we are trying to find iPhones for the best price.
 
 ## Running the program
 
