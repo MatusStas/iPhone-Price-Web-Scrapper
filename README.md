@@ -26,13 +26,13 @@ Every time program is executed it generates object as collection of data and sto
 
 After reading data from file it may look like this
 
-```md
+```HTML
 iPhone 6S       32GB   299.99€      Space Gray https://www.mp3.sk/apple-iphone-6s-32gb-space-gray-novy-tovar-neotvorene-balenie-p-360109.html
 iPhone 7        32GB   379.99€           Black https://www.mp3.sk/apple-iphone-7-32gb-black-novy-tovar-neotvorene-balenie-p-358071.html
 iPhone 7        32GB   379.99€          Silver https://www.mp3.sk/apple-iphone-7-32gb-silver-novy-tovar-neotvorene-balenie-p-358068.html
 iPhone 6S Plus  64GB   449.99€       Rose Gold https://www.mp3.sk/apple-iphone-6s-plus-64gb-rose-gold-novy-tovar-neotvorene-balenie-p-354619.html
 iPhone Xr       64GB   719.99€            Blue https://www.mp3.sk/apple-iphone-xr-64gb-blue-novy-tovar-neotvorene-balenie-p-400224.html
-**iPhone Xs       64GB   759.99€      Space Gray https://www.mp3.sk/apple-iphone-xs-64gb-space-gray-novy-tovar-neotvorene-balenie-p-390661.html**
+iPhone Xs       64GB   759.99€      Space Gray https://www.mp3.sk/apple-iphone-xs-64gb-space-gray-novy-tovar-neotvorene-balenie-p-390661.html
 iPhone Xs       256GB  889.99€      Space Gray https://www.mp3.sk/apple-iphone-xs-256gb-space-gray-novy-tovar-neotvorene-balenie-p-390837.html
 iPhone Xs Max   256GB  999.99€          Silver https://www.mp3.sk/apple-iphone-xs-max-256gb-silver-novy-tovar-neotvorene-balenie-p-401562.html
 iPhone 11 Pro   64GB  1129.99€            Gold https://www.mp3.sk/apple-iphone-11-pro-64gb-gold-novy-tovar-neotvorene-balenie-p-402213.html
