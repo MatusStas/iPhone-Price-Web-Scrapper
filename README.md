@@ -24,7 +24,9 @@ Every time program is executed it generates object as collection of data and sto
 .
 ```
 
-After reading data from file it may look like this
+## Output
+
+After reading data from file output in terminal may look like.
 
 ```HTML
 iPhone 6S       32GB   299.99€      Space Gray https://www.mp3.sk/apple-iphone-6s-32gb-space-gray-novy-tovar-neotvorene-balenie-p-360109.html
@@ -39,4 +41,4 @@ iPhone 11 Pro   64GB  1129.99€            Gold https://www.mp3.sk/apple-iphone
 iPhone 11 Pro   64GB  1129.99€  Midnight Green https://www.mp3.sk/apple-iphone-11-pro-64gb-midnight-green-novy-tovar-neotvorene-balenie-p-404830.html
 ```
 
-If there was a new item it would be highlighted entire row in green color.
+If there was a new item entire row would be highlighted in green color.
