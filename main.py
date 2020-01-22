@@ -164,11 +164,16 @@ def compare():
 def main():
 	init(autoreset=True)
 
-	# arr_phones = []
-	# for page in range(1,10):
-	# 	get_data(page,arr_phones)
-	# write(arr_phones)
-	load()
-	# compare()
+	print("TODAY DATA [0]	LAST DATA [1]")
+	number = int(input("ENTER NUMBER: "))
+
+	if number == 0:
+		arr_phones = []
+		for page in range(1,10):
+			get_data(page,arr_phones)
+		write(arr_phones)
+		compare()
+	if number == 1:
+		load()
 
 main()
