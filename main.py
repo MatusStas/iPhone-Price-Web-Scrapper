@@ -106,9 +106,10 @@ def write(arr_phones):
 	f.close()
 
 def load():
-	date = datetime.now()
-	filename = '{}-{:02d}-{:02d}-{:02d}-{:02d}-{:02d}'.format(date.year,date.month,date.day,date.hour,date.minute,date.second)
-	# print(filename)
+	# date = datetime.now()
+	# filename = '{}-{:02d}-{:02d}-{:02d}-{:02d}-{:02d}'.format(date.year,date.month,date.day,date.hour,date.minute,date.second)
+	os.system('cd datums/; ls -t | head -1 > ../last_datum')
+	filename = open('last_datum','r').read()[:-1]
 	f = open(f'datums/{filename}','rb')
 	n = pickle.load(f)
 	a = []
@@ -163,11 +164,11 @@ def compare():
 def main():
 	init(autoreset=True)
 
-	arr_phones = []
-	for page in range(1,10):
-		get_data(page,arr_phones)
-	write(arr_phones)
-	# load()
-	compare()
+	# arr_phones = []
+	# for page in range(1,10):
+	# 	get_data(page,arr_phones)
+	# write(arr_phones)
+	load()
+	# compare()
 
 main()
