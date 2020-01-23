@@ -106,16 +106,15 @@ def write(arr_phones):
 	f.close()
 
 def load(datum):
-	if datum != 0:
+	if datum == 0:
 		os.system('cd datums/; ls -t | head -1 > ../last_datum')
 		filename = open('last_datum','r').read()[:-1]
 	else:
-		filename = open(f'{datum}','r').read()[:-1]
-	f = open(f'datums/{filename}','rb')
-	n = pickle.load(f)
+		filename = open(f'datums/{datum}','rb')
+	n = pickle.load(filename)
 	a = []
 	for i in range(n):
-		a.append(pickle.load(f))
+		a.append(pickle.load(filename))
 		item = a[-1]
 		print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
 
@@ -165,7 +164,7 @@ def compare():
 def main():
 	init(autoreset=True)
 
-	print("TODAY DATA [0]	LAST DATA [1]	SPECIFIC DATUM [2]   SHOW ALL DATUMS [3]")
+	print("TODAY DATA [0]	LAST DATA [1]	SPECIFIC DATUM [2]")
 	number = int(input("ENTER NUMBER: "))
 
 	if number == 0:
@@ -178,11 +177,10 @@ def main():
 		os.system("clear")
 		load(0)
 	if number == 2:
+		os.system("clear")
+		os.system("cd datums/; ls -t")
 		datum = input("ENTER DATUM: ")
 		os.system("clear")
 		load(datum)
-	if number == 3:
-		os.system("clear")
-		os.system("cd datums/; ls -t")
 
 main()
