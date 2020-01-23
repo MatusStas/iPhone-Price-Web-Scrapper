@@ -4,6 +4,7 @@ import time
 import os
 from glob import glob
 from colorama import init, Fore,Style
+from matplotlib import pyplot as plt
 
 class Item:
 	def __init__(self,model,memory,price,color,link):
@@ -170,10 +171,19 @@ def beta(model,memory,color):
 			if (model,memory,color) == (j.model,j.memory,j.color):
 				bucket.append([j,i])
 
-	os.system("clear")
+	# os.system("clear")
+
+	datums = []
+	price = []
 	for item,datum in bucket:
-		print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
-		print(datum)			
+		# print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
+		new_datum = ".".join(datum.split("-")[0:3])
+		datums.append(new_datum)
+		price.append(item.price)
+
+	plt.plot(datums,price)
+	plt.xticks(rotation=90)
+	plt.show()			
 
 
 
@@ -199,6 +209,9 @@ def main():
 		os.system("clear")
 		load(datum)
 	if number == 3:
-		beta('iPhone 11 Pro',64,'Space Gray')
+		# beta('iPhone 11 Pro',64,'Space Gray')
+		# beta('iPhone 6S',32,'Space Gray')
+		# beta('iPhone 7',32,'Black')
+		beta('iPhone 6S Plus',64,'Rose Gold')
 
 main()
