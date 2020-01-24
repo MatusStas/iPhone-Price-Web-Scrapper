@@ -162,7 +162,7 @@ def compare():
 		else:
 			print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))			
 
-def beta():
+def graph():
 	models = []
 	filename = open('all_datums','r').readlines()
 	for i in filename:
@@ -211,7 +211,7 @@ def beta():
 def main():
 	init(autoreset=True)
 
-	print("TODAY DATA [0]	LAST DATA [1]	SPECIFIC DATUM [2]   BETA [3]")
+	print("TODAY DATA [0]	LAST DATA [1]	SPECIFIC DATUM [2]   GRAPH [3]")
 	number = int(input("ENTER NUMBER: "))
 
 	if number == 0:
@@ -230,6 +230,6 @@ def main():
 		os.system("clear")
 		load(datum)
 	if number == 3:
-		beta()
+		graph()
 
 main()
