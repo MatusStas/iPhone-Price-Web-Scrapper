@@ -106,7 +106,7 @@ def write(arr_phones):
 		pickle.dump(item,f)
 	f.close()
 
-def load(filename):
+def load(filename,print):
 	if filename == 0:
 		os.system('cd datums/; ls -t | head -1 > ../last_datum')
 		filename = open('last_datum','r').read()[:-1]
@@ -117,7 +117,8 @@ def load(filename):
 	for i in range(n):
 		a.append(pickle.load(f))
 		item = a[-1]
-		print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
+		if print != 0:
+			print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
 	return a
 
 def compare():
@@ -128,7 +129,7 @@ def compare():
 		file_new = filename[-1]
 		file_pre = filename[-2]
 	else:
-		load(0)
+		load(0,1)
 		return
 
 	a_pre = []
@@ -161,22 +162,37 @@ def compare():
 		else:
 			print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))			
 
-def beta(model,memory,color):
+def beta():
 	models = []
+	filename = open('all_datums','r').readlines()
+	for i in filename:
+		i = i[:-1]
+		a = load(i,0)
+		for j in a:
+			if (j.model,j.memory,j.color) not in models:
+				models.append((j.model,j.memory,j.color))
+
+	print()
+	for model,memory,color in models:
+		print('{:<25s}{:>3s}GB {:>7s}'.format(model,str(memory),color))
+		# print(len(a),len(c))
+	# os.system("clear")
+
+	print()
+	model = input("model: ")
+	# print(len(model))
+	memory = int(input("memory: "))
+	color = input("color: ")
+	# print(len(color))
+
 	filename = open('all_datums','r').readlines()
 	bucket = []
 	for i in filename:
 		i = i[:-1]
-		a = load(i)
+		a = load(i,0)
 		for j in a:
 			if (model,memory,color) == (j.model,j.memory,j.color):
 				bucket.append([j,i])
-			if (j.model,j.memory,j.color) not in models:
-				models.append((j.model,j.memory,j.color))
-
-	for a,b,c in models:
-		print(a,b,c)
-	# os.system("clear")
 
 	datums = []
 	price = []
@@ -214,6 +230,6 @@ def main():
 		os.system("clear")
 		load(datum)
 	if number == 3:
-		beta('iPhone Xr',128,'Black')
+		beta()
 
 main()
