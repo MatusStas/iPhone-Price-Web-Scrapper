@@ -69,6 +69,8 @@ def parse_link(i,string):
 		i += 1
 	return link
 
+def take_second(elem):
+    return elem[1]
 
 def get_data(page_number,arr_phones):
 	html = open("html","r").read().replace("PAGE_NUMBER",str(page_number))
@@ -167,6 +169,7 @@ def graph():
 	arr = load(0,0)
 	number = []
 	models = []
+	os.system("ls datums/ > all_datums")
 	filename = open('all_datums','r').readlines()
 	for i in filename:
 		i = i[:-1]
@@ -179,7 +182,8 @@ def graph():
 
 
 	today = ["" for i in range(len(models))]
-	print()
+	# models = sorted(models, key = take_second)
+	print(models)
 	for item in arr:
 		if (item.model,item.memory,item.color) in models:
 			index = models.index((item.model,item.memory,item.color))
