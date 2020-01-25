@@ -163,6 +163,8 @@ def compare():
 			print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))			
 
 def graph():
+	n = 0
+	number = []
 	models = []
 	filename = open('all_datums','r').readlines()
 	for i in filename:
@@ -171,19 +173,21 @@ def graph():
 		for j in a:
 			if (j.model,j.memory,j.color) not in models:
 				models.append((j.model,j.memory,j.color))
+				number.append(n)
+				n+=1
 
 	print()
+	i = 0
 	for model,memory,color in models:
-		print('{:<25s}{:>3s}GB {:>7s}'.format(model,str(memory),color))
+		print('{:>2} {:<25s}{:>3s}GB {:>7s}'.format(number[i],model,str(memory),color))
+		i += 1
 		# print(len(a),len(c))
 	# os.system("clear")
 
 	print()
-	model = input("model: ")
-	# print(len(model))
-	memory = int(input("memory: "))
-	color = input("color: ")
-	# print(len(color))
+	n = int(input("number: "))
+	model,memory,color = models[n]
+
 
 	filename = open('all_datums','r').readlines()
 	bucket = []
