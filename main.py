@@ -106,7 +106,7 @@ def write(arr_phones):
 		pickle.dump(item,f)
 	f.close()
 
-def load(filename,print):
+def load(filename,show):
 	if filename == 0:
 		os.system('cd datums/; ls -t | head -1 > ../last_datum')
 		filename = open('last_datum','r').read()[:-1]
@@ -117,7 +117,7 @@ def load(filename,print):
 	for i in range(n):
 		a.append(pickle.load(f))
 		item = a[-1]
-		if print != 0:
+		if show != 0:
 			print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
 	return a
 
@@ -164,6 +164,7 @@ def compare():
 
 def graph():
 	n = 0
+	arr = load(0,0)
 	number = []
 	models = []
 	filename = open('all_datums','r').readlines()
@@ -176,13 +177,20 @@ def graph():
 				number.append(n)
 				n+=1
 
+
+	today = ["" for i in range(len(models))]
 	print()
+	for item in arr:
+		if (item.model,item.memory,item.color) in models:
+			index = models.index((item.model,item.memory,item.color))
+			today[index] = "available"
 	i = 0
 	for model,memory,color in models:
-		print('{:>2} {:<25s}{:>3s}GB {:>7s}'.format(number[i],model,str(memory),color))
+		print('{:>2} {:<25s}{:>3s}GB {:<15s} {:<2}'.format(number[i],model,str(memory),color,today[i]))
 		i += 1
 		# print(len(a),len(c))
 	# os.system("clear")
+
 
 	print()
 	n = int(input("number: "))
@@ -226,7 +234,7 @@ def main():
 		compare()
 	if number == 1:
 		os.system("clear")
-		load(0)
+		load(0,1)
 	if number == 2:
 		os.system("clear")
 		os.system("cd datums/; ls -t")
