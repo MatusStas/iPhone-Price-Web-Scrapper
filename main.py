@@ -6,6 +6,7 @@ from glob import glob
 from colorama import init, Fore,Style
 from matplotlib import pyplot as plt
 
+
 class Item:
 	def __init__(self,model,memory,price,color,link):
 		self.model = model
@@ -69,17 +70,17 @@ def parse_link(i,string):
 		i += 1
 	return link
 
+
 def take_second(elem):
     return elem[1]
+
 
 def get_data(page_number,arr_phones):
 	html = open("html","r").read().replace("PAGE_NUMBER",str(page_number))
 
 	command = "curl {} > website".format(html)
-	# print("XXX")
 	os.system(command)
 	raw_data = open("website","r").read().split("f_back")[0]
-	# print(raw_data)
 	arr = raw_data.split("kkk")
 
 	for index,value in enumerate(arr):
@@ -96,17 +97,12 @@ def write(arr_phones):
 	arr_phones = sorted(arr_phones, key = lambda item: (item.price,item.color))
 	date = datetime.now()
 	filename = '{}-{:02d}-{:02d}-{:02d}-{:02d}-{:02d}'.format(date.year,date.month,date.day,date.hour,date.minute,date.second)
-	# print(filename)
 	f = open(f'datums/{filename}','wb')
 	pickle.dump(len(arr_phones),f)
 	for i,item in enumerate(arr_phones):
-		# print('x')
-		# print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
-		# print('{:<18s}{:>3s}GB {:>7s}€ {:>14s}'.format(item.model,str(item.memory),str(item.price),item.color))
-		# os.system(f"google-chrome {item.link}")
-		# f.write('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}\n'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
 		pickle.dump(item,f)
 	f.close()
+
 
 def load(filename,show):
 	if filename == 0:
@@ -122,6 +118,7 @@ def load(filename,show):
 		if show != 0:
 			print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
 	return a
+
 
 def compare():
 	missing = []
@@ -164,6 +161,7 @@ def compare():
 		else:
 			print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))			
 
+
 def graph():
 	n = 0
 	arr = load(0,0)
@@ -183,7 +181,7 @@ def graph():
 
 	today = ["" for i in range(len(models))]
 	models = sorted(models, key = take_second)
-	print()
+	print(            )
 	for item in arr:
 		if (item.model,item.memory,item.color) in models:
 			index = models.index((item.model,item.memory,item.color))
@@ -192,8 +190,6 @@ def graph():
 	for model,memory,color in models:
 		print('{:>2} {:<25s}{:>3s}GB {:<15s} {:<2}'.format(number[i],model,str(memory),color,today[i]))
 		i += 1
-		# print(len(a),len(c))
-	# os.system("clear")
 
 
 	print()
@@ -213,7 +209,6 @@ def graph():
 	datums = []
 	price = []
 	for item,datum in bucket:
-		# print('{:<25s}{:>3s}GB {:>7s}€ {:>15s} {}'.format(item.model,str(item.memory),str(item.price),item.color,item.link))
 		new_datum = ".".join(datum.split("-")[0:3])
 		datums.append(new_datum)
 		price.append(item.price)
@@ -221,7 +216,6 @@ def graph():
 	plt.plot(datums,price)
 	plt.xticks(rotation=90)
 	plt.show()			
-
 
 
 def main():
