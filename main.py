@@ -182,8 +182,8 @@ def graph():
 
 
 	today = ["" for i in range(len(models))]
-	# models = sorted(models, key = take_second)
-	print(models)
+	models = sorted(models, key = take_second)
+	print()
 	for item in arr:
 		if (item.model,item.memory,item.color) in models:
 			index = models.index((item.model,item.memory,item.color))
@@ -197,7 +197,7 @@ def graph():
 
 
 	print()
-	n = int(input("number: "))
+	n = int(input("ENTER NUMBER: "))
 	model,memory,color = models[n]
 
 
@@ -226,26 +226,34 @@ def graph():
 
 def main():
 	init(autoreset=True)
+	os.system("clear")
 
-	print("TODAY DATA [0]	LAST DATA [1]	SPECIFIC DATUM [2]   GRAPH [3]")
-	number = int(input("ENTER NUMBER: "))
+	while True:
+		print("TODAY DATA [0]	LAST DATA [1]	SPECIFIC DATUM [2]   GRAPH [3]   EXIT [4]")
+		number = int(input("ENTER NUMBER: "))
 
-	if number == 0:
-		arr_phones = []
-		for page in range(1,10):
-			get_data(page,arr_phones)
-		write(arr_phones)
-		compare()
-	if number == 1:
-		os.system("clear")
-		load(0,1)
-	if number == 2:
-		os.system("clear")
-		os.system("cd datums/; ls -t")
-		datum = input("ENTER DATUM: ")
-		os.system("clear")
-		load(datum)
-	if number == 3:
-		graph()
+		if number == 0:
+			arr_phones = []
+			for page in range(1,10):
+				get_data(page,arr_phones)
+			write(arr_phones)
+			compare()
+			print()
+		if number == 1:
+			os.system("clear")
+			load(0,1)
+			print()
+		if number == 2:
+			os.system("clear")
+			os.system("cd datums/; ls -t")
+			datum = input("ENTER DATUM: ")
+			os.system("clear")
+			load(datum,1)
+			print()
+		if number == 3:
+			graph()
+			print()
+		if number == 4:
+			exit()
 
 main()
