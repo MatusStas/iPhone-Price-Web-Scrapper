@@ -71,7 +71,7 @@ def parse_link(i,string):
 	return link
 
 
-def take_second(elem):
+def return_price(elem):
     return elem[3]
 
 
@@ -184,9 +184,6 @@ def graph():
 				index = models.index((j.model,j.memory,j.color))
 				if j.price < temp[index]:
 					temp[index] = j.price
-				# print(index)
-				# print(j.price)
-				# print(temp[index])
 
 
 	today = ["" for i in range(len(models))]
@@ -197,11 +194,9 @@ def graph():
 			today[index] = "available"
 	i = 0
 	for index in range(len(temp)):
-		# print(index,temp[index])
-		# has to be tuple because addtional ""
 		models[index] += (temp[index],"")
 
-	models = sorted(models, key = take_second)
+	models = sorted(models, key = return_price)
 	for model,memory,color,price,nothing in models:
 		print('{:>2} {:<25s}{:>3s}GB {:>8} {:<15s} {:<2}'.format(number[i],model,str(memory),price,color,today[i]))
 		i += 1
