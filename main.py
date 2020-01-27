@@ -75,6 +75,9 @@ def return_price(elem):
     return elem[3]
 
 
+def newLine():
+	print()
+
 def get_data(page_number,arr_phones):
 	html = open("html","r").read().replace("PAGE_NUMBER",str(page_number))
 
@@ -187,7 +190,7 @@ def graph():
 
 
 	today = ["" for i in range(len(models))]
-	print()
+	newLine()
 	for item in arr:
 		if (item.model,item.memory,item.color) in models:
 			index = models.index((item.model,item.memory,item.color))
@@ -202,7 +205,7 @@ def graph():
 		i += 1
 
 
-	print()
+	newLine()
 	n = int(input("ENTER NUMBER: "))
 	model,memory,color,price, nothing = models[n]
 
@@ -242,21 +245,21 @@ def main():
 				get_data(page,arr_phones)
 			write(arr_phones)
 			compare()
-			print()
+			newLine()
 		if number == 1:
 			os.system("clear")
 			load(0,1)
-			print()
+			newLine()
 		if number == 2:
 			os.system("clear")
 			os.system("cd datums/; ls -t")
 			datum = input("ENTER DATUM: ")
 			os.system("clear")
 			load(datum,1)
-			print()
+			newLine()
 		if number == 3:
 			graph()
-			print()
+			newLine()
 		if number == 4:
 			exit()
 
