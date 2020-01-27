@@ -72,7 +72,7 @@ def parse_link(i,string):
 
 
 def take_second(elem):
-    return elem[1]
+    return elem[3]
 
 
 def get_data(page_number,arr_phones):
@@ -165,6 +165,7 @@ def compare():
 def graph():
 	n = 0
 	arr = load(0,0)
+	temp = []
 	number = []
 	models = []
 	os.system("ls datums/ > all_datums")
@@ -176,25 +177,39 @@ def graph():
 			if (j.model,j.memory,j.color) not in models:
 				models.append((j.model,j.memory,j.color))
 				number.append(n)
+				temp.append(j.price)
 				n+=1
+
+			else:
+				index = models.index((j.model,j.memory,j.color))
+				if j.price < temp[index]:
+					temp[index] = j.price
+				# print(index)
+				# print(j.price)
+				# print(temp[index])
 
 
 	today = ["" for i in range(len(models))]
-	models = sorted(models, key = take_second)
-	print(            )
+	print()
 	for item in arr:
 		if (item.model,item.memory,item.color) in models:
 			index = models.index((item.model,item.memory,item.color))
 			today[index] = "available"
 	i = 0
-	for model,memory,color in models:
-		print('{:>2} {:<25s}{:>3s}GB {:<15s} {:<2}'.format(number[i],model,str(memory),color,today[i]))
+	for index in range(len(temp)):
+		# print(index,temp[index])
+		# has to be tuple because addtional ""
+		models[index] += (temp[index],"")
+
+	models = sorted(models, key = take_second)
+	for model,memory,color,price,nothing in models:
+		print('{:>2} {:<25s}{:>3s}GB {:>8} {:<15s} {:<2}'.format(number[i],model,str(memory),price,color,today[i]))
 		i += 1
 
 
 	print()
 	n = int(input("ENTER NUMBER: "))
-	model,memory,color = models[n]
+	model,memory,color,price, nothing = models[n]
 
 
 	filename = open('all_datums','r').readlines()
