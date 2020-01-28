@@ -239,6 +239,7 @@ def main():
 		print("TODAY DATA [0]	LAST DATA [1]	SPECIFIC DATUM [2]   GRAPH [3]   EXIT [4]")
 		number = int(input("ENTER NUMBER: "))
 
+
 		if number == 0:
 			arr_phones = []
 			for page in range(1,10):
@@ -246,21 +247,26 @@ def main():
 			write(arr_phones)
 			compare()
 			newLine()
-		if number == 1:
+
+		elif number == 1:
 			os.system("clear")
 			load(0,1)
 			newLine()
-		if number == 2:
+
+		elif number == 2:
 			os.system("clear")
 			os.system("cd datums/; ls -t")
 			datum = input("ENTER DATUM: ")
 			os.system("clear")
 			load(datum,1)
+			
 			newLine()
-		if number == 3:
+		elif number == 3:
 			graph()
 			newLine()
-		if number == 4:
+			
+		else:
 			exit()
 
-main()
+if __name__ == "__main__":
+	main()
